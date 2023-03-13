@@ -1,22 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "functions.h"
-#include <string.h>
-#include "types.h"
-#define MAX_N 100
 
+#define MAX_N 100
+int N;
+int cube[MAX_N][MAX_N];
+void display_matrix(int N, int cube[][MAX_N]);
 int main()
 {
-    int N;
-    int cube[MAX_N][MAX_N];
-    int num_count[MAX_N * MAX_N + 1] = {0}; 
+    int num_count[MAX_N * MAX_N + 1] = {0}; // keep track of the number count
     int x, y;
 
-   
+    // read input N
     printf("Enter matrix size N: ");
     scanf("%d", &N);
 
-  
+    // read matrix elements
     for (x = 0; x < N; x++)
     {
         for (y = 0; y < N; y++)
@@ -24,28 +22,28 @@ int main()
             int num;
             do
             {
-                
+                // read a number
                 printf("Enter number for row %d, column %d: ", x + 1, y + 1);
                 scanf("%d", &num);
 
-               
+                // check if the number is in the range [1 ... N^2]
                 if (num < 1 || num > N * N)
                 {
                     printf("Invalid number! Please enter a number from 1 to %d.\n", N * N);
                 }
-                
                 else if (num_count[num] > 0)
                 {
                     printf("Number %d has already been entered! Please enter another number.\n", num);
                 }
                 else
                 {
-                    
+                    // add the number to the matrix and increase the count
                     cube[x][y] = num;
                     num_count[num]++;
+                    display_matrix(N, cube);
                     break;
                 }
-            } while (1); 
+            } while (1); // repeat until a valid number is entered
         }
     }
     bool status = true;
@@ -83,11 +81,24 @@ int main()
     printf("magic sqaure exists !");
     return 0;
 };
-
-// NOTE: Evaluate a postfix expression using a stack.
-// Convert an infix expression to a postfix expression using a stack.
-// Implement a stack with push, pop, and find - min operations, all with O(1) time complexity.
-// Implement a stack that can perform push, pop, and get the minimum element in O(1) time complexity.
-// Given a stack of integers, sort the stack using an auxiliary stack.
-// Given a stack, reverse the elements of the stack using only stack operations.
-// Implement a queue using two stacks.
+void display_matrix(int N, int cube[][MAX_N])
+{
+    printf("\n");
+    for (int x = 0; x < N; x++)
+    {
+        printf("| ");
+        for (int y = 0; y < N; y++)
+        {
+            printf("%d | ", cube[x][y]);
+        }
+        printf("\n");
+        if (x < N - 1) // don't print horizontal line after last row
+        {
+            for (int i = 0; i < N * 4 + 1; i++)
+            {
+                printf("-");
+            }
+            printf("\n");
+        }
+    }
+}
