@@ -9,7 +9,7 @@ void readInput(int num_count[], int cube[MAX_N][MAX_N]);
 int main()
 {
     int num_count[MAX_N * MAX_N + 1] = {0}; // keep track of the number count
-    int x, y;
+    int x, y, i;
 
     // read input N
     printf("Enter matrix size N: ");
@@ -18,17 +18,17 @@ int main()
     // read matrix elements
     readInput(num_count, cube);
     int sum = 0;
-    for (char i = 0; i < N; i++)
+    for (i = 0; i < N; i++)
     {
         sum += cube[i][i];
     };
     int rightDiag = 0, leftDiag = 0;
-    for (char i = 0; i < N; i++)
+    for (i = 0; i < N; i++)
     {
-
+        int j;
         int row = 0;
         int collumn = 0;
-        for (char j = 0; j < N; j++)
+        for (j = 0; j < N; j++)
         {
             row += cube[i][j];
             collumn += cube[j][i];
@@ -52,18 +52,20 @@ int main()
 };
 void display_matrix(int N, int cube[][MAX_N])
 {
+    int x, y;
     printf("\n");
-    for (int x = 0; x < N; x++)
+    for (x = 0; x < N; x++)
     {
+        int i, j;
         printf("| ");
-        for (int y = 0; y < N; y++)
+        for (y = 0; y < N; y++)
         {
             printf("%d | ", cube[x][y]);
         }
         printf("\n");
         if (x < N - 1) // don't print horizontal line after last row
         {
-            for (int i = 0; i < N * 4 + 1; i++)
+            for (i = 0; i < N * 4 + 1; i++)
             {
                 printf("-");
             }
@@ -73,9 +75,10 @@ void display_matrix(int N, int cube[][MAX_N])
 }
 void readInput(int num_count[], int cube[MAX_N][MAX_N])
 {
-    for (int x = 0; x < N; x++)
+    int y, x;
+    for (x = 0; x < N; x++)
     {
-        for (int y = 0; y < N; y++)
+        for (y = 0; y < N; y++)
         {
             int num;
             do
