@@ -45,7 +45,7 @@ void printMatrix(int matrix[5][5])
         printf("\n"); 
     }; 
 };
-
+========================================================================================================================================
 #include <stdio.h> 
 void printMatrix(int matrix[5][5]); 
 int abs(int number); 
@@ -87,3 +87,45 @@ void printMatrix(int matrix[5][5])
         printf("\n"); 
     }; 
 };
+============================================================================================================================================ 
+    #include <stdio.h>
+
+int main() {
+   int arr1[10], arr2[10], arr3[10];
+   int i, j, k, count, len;
+
+   printf("Enter 10 integers: \n");
+   for (i = 0; i < 10; i++) {
+      scanf("%d", &arr1[i]);
+   }
+
+   len = 10;
+   k = 0;
+   for (i = 0; i < len; i++) {
+      count = 1;
+      for (j = i + 1; j < len; j++) {
+         if (arr1[i] == arr1[j]) {
+            count++;
+         }
+      }
+      if (count > 1) {
+         arr2[k] = arr1[i];
+         arr3[k] = count;
+         k++;
+      }
+   }
+
+   printf("Duplicate elements in the array: \n");
+   for (i = 0; i < k; i++) {
+      printf("%d ", arr2[i]);
+   }
+
+   printf("\n");
+   printf("Number of times each duplicate element occurs: \n");
+   for (i = 0; i < k; i++) {
+      printf("%d ", arr3[i]);
+   }
+
+   printf("\n");
+   return 0;
+}
